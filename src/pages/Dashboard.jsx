@@ -6,6 +6,12 @@ import ConversionCard from "../components/ConversionCard";
 import TeamTable from "../components/TeamTable";
 import SalesChart from "../components/SalesChart";
 
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
+import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
+import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
+
+
 export default function Dashboard() {
   return (
     <div className="dashboard">
@@ -18,30 +24,39 @@ export default function Dashboard() {
           {/* STATS */}
           <div className="row g-4 mt-2">
             <div className="col-md-3">
-          <StatCard
-  title="Total Leads"
-  value="1,250"
-  icon="bi-people"
-  bg="linear-gradient(180deg, rgba(89, 72, 219, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"
-/>
-
-
+              <StatCard
+                title="Total Leads"
+                value="1,250"
+                icon={PeopleAltOutlinedIcon}
+                gradient="linear-gradient(135deg, #6366f1, #8b5cf6)"
+              />
             </div>
-            <div className="col-md-3">
-             <StatCard
-  title="Active Deals"
-  value="136"
-  icon="bi-briefcase"
-  bg="linear-gradient(180deg, #2DC8A880 50%, #FFFFFF00 100%)"
-/>
 
-            </div>
             <div className="col-md-3">
-              <StatCard title="Closed Deals" value="136" icon="bi-bag-check" bg="linear-gradient(180deg, #FE808480 50%, #FFFFFF00 100%)"
-/>
+              <StatCard
+                title="Active Deals"
+                value="136"
+                icon={BusinessCenterOutlinedIcon}
+                gradient="linear-gradient(135deg, #34d399, #10b981)"
+              />
             </div>
+
             <div className="col-md-3">
-              <StatCard title="Monthly Revenue" value="45,000" icon="bi-currency-dollar" bg="#fde68a" />
+              <StatCard
+                title="Closed Deals"
+                value="136"
+                icon={BusinessCenterOutlinedIcon}
+                gradient="linear-gradient(135deg, #fb7185, #f43f5e)"
+              />
+            </div>
+
+            <div className="col-md-3">
+              <StatCard
+                title="Monthly Revenue"
+                value="45,000"
+                icon={PaymentsOutlinedIcon}
+                gradient="linear-gradient(135deg, #facc15, #f59e0b)"
+              />
             </div>
           </div>
 
@@ -53,15 +68,16 @@ export default function Dashboard() {
 
             <div className="col-md-8">
               <div className="card sales-card">
-                <div className="card-header">
+                <div className="card-header sales-header">
                   <h6>Sales Reports</h6>
-                  <select>
-                    <option>Monthly</option>
-                  </select>
+                  <div className="sales-filter">
+                    Monthly <i className="bi bi-chevron-down"></i>
+                  </div>
                 </div>
 
-                {/* REAL CHART */}
-                <SalesChart />
+                <div className="sales-chart">
+                  <SalesChart />
+                </div>
               </div>
             </div>
           </div>
