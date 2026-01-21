@@ -5,10 +5,12 @@
     display: flex;
     background: #f6f7fb;
     min-height: 100vh;
+    padding-left: 6.5rem !important;
 }
 
 .main-content {
     flex: 1;
+     padding-top: 64px;
 }
 
 /* =======================
@@ -283,7 +285,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .dashboard {
         flex-direction: column;
     }

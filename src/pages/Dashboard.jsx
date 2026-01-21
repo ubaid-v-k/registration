@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Drawer, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 import "../styles/dashboard.css";
 import Sidebar from "../components/Sidebar";
@@ -9,71 +9,64 @@ import ConversionCard from "../components/ConversionCard";
 import TeamTable from "../components/TeamTable";
 import SalesChart from "../components/SalesChart";
 
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
+
+import { Briefcase } from "iconsax-react";
+import { Profile2User } from "iconsax-react";
 
 export default function Dashboard() {
   const isMobile = useMediaQuery("(max-width: 900px)");
-  const [open, setOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="dashboard">
-      {/* DESKTOP SIDEBAR */}
-      {!isMobile && <Sidebar />}
+      {/* Sidebar */}
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      {/* MOBILE SIDEBAR */}
-      {isMobile && (
-        <Drawer
-          open={open}
-          onClose={() => setOpen(false)}
-          PaperProps={{
-            sx: { width: 100 },
-          }}
-        >
-          <Sidebar onItemClick={() => setOpen(false)} />
-        </Drawer>
-      )}
-
+      {/* Main content */}
       <div className="main-content">
-        <Topbar onMenuClick={() => setOpen(true)} />
+        <Topbar onMenuClick={() => setSidebarOpen(true)} />
 
         <div className="container-fluid px-4">
           {/* STATS */}
           <div className="row g-4 mt-2">
-            <div className="col-md-3">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <StatCard
                 title="Total Leads"
                 value="1,250"
-                icon={PeopleAltOutlinedIcon}
-                gradient="linear-gradient(135deg, #6366f1, #8b5cf6)"
+                icon={<Profile2User size="28" variant="Bold" color="#5948DB" />}
+                gradient="linear-gradient(180deg, rgba(89, 72, 219, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"
               />
             </div>
 
-            <div className="col-md-3">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <StatCard
                 title="Active Deals"
                 value="136"
-                icon={BusinessCenterOutlinedIcon}
-                gradient="linear-gradient(135deg, #34d399, #10b981)"
+                icon={<Briefcase size="28" variant="Bold" color="#2DC8A8" />}
+                gradient="linear-gradient(180deg, rgba(45, 200, 168, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"
               />
             </div>
 
-            <div className="col-md-3">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <StatCard
                 title="Closed Deals"
                 value="136"
-                icon={BusinessCenterOutlinedIcon}
-                gradient="linear-gradient(135deg, #fb7185, #f43f5e)"
+                icon={<Briefcase size="28" variant="Bold" color="#FE8084" />}
+                gradient="linear-gradient(180deg, rgba(254, 128, 132, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"
               />
             </div>
 
-            <div className="col-md-3">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <StatCard
                 title="Monthly Revenue"
                 value="45,000"
-                icon={PaymentsOutlinedIcon}
-                gradient="linear-gradient(135deg, #facc15, #f59e0b)"
+                icon={
+                  <PaymentsOutlinedIcon
+                    sx={{ color: "#E0A100", fontSize: 28 }}
+                  />
+                }
+                gradient="linear-gradient(180deg, rgba(224, 161, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%)"
               />
             </div>
           </div>

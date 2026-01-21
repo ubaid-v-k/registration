@@ -1,3 +1,4 @@
+/* ======================= SIDEBAR ======================= */
 .sidebar {
   width: 110px;
   background: #ffffff;
@@ -6,6 +7,8 @@
   flex-direction: column;
   align-items: center;
   border-right: 1px solid #f1f5f9;
+  transition: transform 0.3s ease; 
+  margin-top: 30px;
 }
 
 /* Each item */
@@ -30,12 +33,6 @@
   font-size: 22px;
 }
 
-.side-icon.active {
-  background: #e9f1ff;
-  border-color: #4f7cff;
-  color: #4f7cff;
-}
-
 /* Active icon */
 .side-icon.active {
   background: #5b5ff3;
@@ -54,4 +51,39 @@
 
 .active-text {
   color: #5b5ff3;
+}
+
+/* ======================= MOBILE SIDEBAR ======================= */
+@media (max-width: 900px) {
+  /* Slide sidebar offscreen by default */
+  .sidebar {
+    position: fixed;
+    top: 64px; /* below Topbar */
+    left: 0;
+    height: calc(100vh - 64px);
+    z-index: 1000;
+    transform: translateX(-100%);
+  }
+
+  /* When open, slide in */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Overlay backdrop */
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    margin-top: -30p;
+  }
+
+  .sidebar-backdrop.show {
+    opacity: 1;
+    pointer-events: all;
+  }
 }

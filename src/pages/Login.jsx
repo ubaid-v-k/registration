@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { loginUser } from "../api/authService";
 import { useNavigate, Link } from "react-router-dom";
-
+import "../styles/login.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,6 +19,19 @@ export default function Login() {
     if (!res.success) {
       setError("Email or password incorrect");
     } else {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: form.email.split("@")[0],
+          email: form.email,
+          registeredAt: new Date().toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          }),
+        })
+      );
+
       navigate("/dashboard");
     }
   };
@@ -30,29 +43,40 @@ export default function Login() {
 
         {error && <div className="alert alert-danger">{error}</div>}
 
-        <input
-          type="email"
-          className="form-control auth-input mb-3"
-          placeholder="Email"
-          value={form.email}
-          onChange={(e) =>
-            setForm({ ...form, email: e.target.value })
-          }
-        />
+        <form onSubmit={submit}>
+          <input
+            type="email"
+            className="form-control auth-input mb-3"
+            placeholder="Email"
+            value={form.email}
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
+            required
+          />
 
-        <input
-          type="password"
-          className="form-control auth-input mb-3"
-          placeholder="Password"
-          value={form.password}
-          onChange={(e) =>
-            setForm({ ...form, password: e.target.value })
-          }
-        />
+          <input
+            type="password"
+            className="form-control auth-input mb-2"
+            placeholder="Password"
+            value={form.password}
+            onChange={(e) =>
+              setForm({ ...form, password: e.target.value })
+            }
+            required
+          />
 
-        <button className="btn auth-btn w-100" onClick={submit}>
-          Log in
-        </button>
+          {/* Forgot password */}
+          <div className="text-end mb-3">
+            <Link to="/forgot-password" className="forgot-link">
+              Forgot password?
+            </Link>
+          </div>
+
+          <button type="submit" className="btn auth-btn w-100">
+            Log in
+          </button>
+        </form>
 
         <p className="text-center mt-3">
           Don’t have an account? <Link to="/register">Sign up</Link>

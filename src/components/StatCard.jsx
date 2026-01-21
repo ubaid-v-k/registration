@@ -1,6 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
-export default function StatCard({ title, value, icon: Icon, gradient }) {
+export default function StatCard({ title, value, icon, gradient}) {
   return (
     <div className="stat-card">
       <div>
@@ -19,7 +19,7 @@ export default function StatCard({ title, value, icon: Icon, gradient }) {
           justifyContent: "center",
         }}
       >
-        <Icon sx={{ color: "#fff", fontSize: 28 }} />
+        {icon}
       </Box>
     </div>
   );

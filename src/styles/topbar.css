@@ -1,13 +1,17 @@
 /* ================= TOPBAR ================= */
 .topbar {
+  position: fixed;
+  top: 0;
+  left: 0px;              
+  right: 0;
+  z-index: 1000;
   background: #ffffff;
   padding: 14px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* Desktop layout (sidebar width = 100px) */
-  margin-left: -100px;
+  height: 64px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* Brand */
@@ -91,7 +95,7 @@
 /* ================= MOBILE VIEW ================= */
 @media (max-width: 900px) {
   .topbar {
-    margin-left: 0; /* remove desktop offset */
+    left: 0;                 /* 👈 remove sidebar offset */
     padding: 12px 16px;
   }
 
@@ -100,7 +104,7 @@
   }
 
   .search-box {
-    display: none; /* cleaner mobile UI */
+    display: none;
   }
 
   .icon-btn {
@@ -113,4 +117,84 @@
     height: 36px;
     font-size: 14px;
   }
+}
+
+
+/* ================= PROFILE DROPDOWN ================= */
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 54px;
+  right: 0;
+  width: 260px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  z-index: 2000;
+}
+
+/* user info */
+.profile-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.avatar-lg {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #6c63ff;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info h6 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* meta */
+.profile-meta {
+  margin: 12px 0;
+  font-size: 13px;
+  color: #374151;
+}
+
+.profile-meta p {
+  margin: 4px 0;
+}
+
+/* logout */
+.logout-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #ef4444;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #fef2f2;
 }
