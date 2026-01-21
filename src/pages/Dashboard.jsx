@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Drawer, useMediaQuery } from "@mui/material";
+
 import "../styles/dashboard.css";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
@@ -8,17 +11,32 @@ import SalesChart from "../components/SalesChart";
 
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
-import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 
-
 export default function Dashboard() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="dashboard">
-      <Sidebar />
+      {/* DESKTOP SIDEBAR */}
+      {!isMobile && <Sidebar />}
+
+      {/* MOBILE SIDEBAR */}
+      {isMobile && (
+        <Drawer
+          open={open}
+          onClose={() => setOpen(false)}
+          PaperProps={{
+            sx: { width: 100 },
+          }}
+        >
+          <Sidebar onItemClick={() => setOpen(false)} />
+        </Drawer>
+      )}
 
       <div className="main-content">
-        <Topbar />
+        <Topbar onMenuClick={() => setOpen(true)} />
 
         <div className="container-fluid px-4">
           {/* STATS */}

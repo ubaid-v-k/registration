@@ -1,12 +1,19 @@
 import "../styles/topbar.css";
 
-export default function Topbar() {
-  const userName = "A"; // later from backend
+export default function Topbar({ onMenuClick }) {
+  const userName = "A";
   const firstLetter = userName.charAt(0).toUpperCase();
 
   return (
     <div className="topbar">
-      <h4 className="brand">CRM</h4>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        {/* MOBILE MENU */}
+        <button className="menu-btn" onClick={onMenuClick}>
+          <i className="bi bi-list"></i>
+        </button>
+
+        <h4 className="brand">CRM</h4>
+      </div>
 
       <div className="topbar-right">
         <div className="search-box">
@@ -18,9 +25,7 @@ export default function Topbar() {
           <i className="bi bi-bell"></i>
         </button>
 
-        <div className="profile-avatar">
-          {firstLetter}
-        </div>
+        <div className="profile-avatar">{firstLetter}</div>
       </div>
     </div>
   );
